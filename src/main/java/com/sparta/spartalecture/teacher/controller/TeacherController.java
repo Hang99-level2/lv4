@@ -31,8 +31,4 @@ public class TeacherController {
         }
         return teacherService.createUser(teacherRequestDto);
     }
-
-
-
-
 }

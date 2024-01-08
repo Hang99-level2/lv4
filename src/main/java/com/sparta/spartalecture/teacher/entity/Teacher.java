@@ -1,6 +1,5 @@
 package com.sparta.spartalecture.teacher.entity;
 
-
 import com.sparta.spartalecture.teacher.dto.TeacherRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,6 +35,5 @@ public class Teacher {
         this.number = teacherRequestDto.getNumber();
         this.introduction = teacherRequestDto.getIntroduction();
     }
-
 }
 

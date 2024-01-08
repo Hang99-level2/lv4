@@ -12,5 +12,4 @@ public class TeacherRequestDto {
     private String company;
     private String number;
     private String introduction;
-
 }
