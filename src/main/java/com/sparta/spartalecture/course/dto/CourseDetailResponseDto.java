@@ -21,7 +21,7 @@ public class CourseDetailResponseDto {
     private String category;
     private String addDate;
     private TeacherResponseDto teacherResponseDto;
-    private long users;
+    private long likes;
     private List<CommentResponseDto> comments;
 
     public CourseDetailResponseDto(Course course) {
@@ -30,7 +30,7 @@ public class CourseDetailResponseDto {
         this.introduction = course.getIntroduction();
         this.category = course.getCategory();
         this.addDate = course.getAddDate();
-        this.users = course.getUsers().size();
+        this.likes = course.getUsers().size();
         this.comments = course.getComments().stream().map(CommentResponseDto::new).toList();
         this.teacherResponseDto = new TeacherResponseDto(course.getTeacher());
     }

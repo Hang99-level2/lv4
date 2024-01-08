@@ -24,12 +24,14 @@ public class CommentService {
     public Comment getCommentById(long id){
         return commentRepository.findById(id).orElseThrow();
     }
+    @Transactional
     public CommentResponseDto createComment(long userId, long courseId, CommentRequestDto commentRequestDto) {
         User user = userService.getUserById(userId);
         Course course = courseService.getCourseById(courseId);
-        Comment comment = new Comment(user,course,commentRequestDto.getContext());
+        Comment comment = new Comment(user,commentRequestDto.getContext());
+        course.getComments().add(comment);
         commentRepository.save(comment);
-        return new CommentResponseDto(user.getId(), course.getId(),comment.getContent());
+        return new CommentResponseDto(user.getId(),comment.getContent());
     }
 
     @Transactional
@@ -40,8 +42,9 @@ public class CommentService {
         }
 
         comment.update(commentRequestDto.getContext());
-        return new CommentResponseDto(comment.getUser().getId(), comment.getCourse().getId(),comment.getContent());
+        return new CommentResponseDto(comment.getUser().getId(),comment.getContent());
     }
+
     @Transactional
     public long deleteComment(long userId, long commentId) {
         Comment comment = getCommentById(commentId);

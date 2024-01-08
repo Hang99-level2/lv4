@@ -14,19 +14,14 @@ public class Comment {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
-
-    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(nullable = false)
     private String content;
 
-    public Comment(User user, Course course, String content) {
+    public Comment(User user,String content) {
         this.user = user;
-        this.course = course;
         this.content = content;
     }
 

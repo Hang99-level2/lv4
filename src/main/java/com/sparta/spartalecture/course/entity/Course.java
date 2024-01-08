@@ -34,7 +34,7 @@ public class Course {
     @Column(nullable = false)
     private String addDate;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
@@ -46,7 +46,8 @@ public class Course {
     )
     private List<User> users;
 
-    @OneToMany(mappedBy= "course")
+    @OneToMany
+    @JoinColumn(name = "comments_id")
     private List<Comment> comments;
 
     public Course(CourseRequestDto courseRequestDto,Teacher teacher) {

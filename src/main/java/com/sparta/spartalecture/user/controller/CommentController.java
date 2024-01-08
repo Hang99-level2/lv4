@@ -35,12 +35,8 @@ public class CommentController {
     @DeleteMapping("/comments/{commentId}")
     public long DeleteComment(@PathVariable long commentId,
                               HttpServletRequest req){
-        Object userIdAttribute = req.getAttribute("userId");
-        System.out.println("userIdAttribute = " + userIdAttribute);
-        if (userIdAttribute == null) {
-            throw new IllegalArgumentException("유저 아이디가 존재하지 않습니다.");
-        }
-        long userId = (long) userIdAttribute;
+
+        long userId = (long) req.getAttribute("userId");
         return commentService.deleteComment(userId,commentId);
     }
 
