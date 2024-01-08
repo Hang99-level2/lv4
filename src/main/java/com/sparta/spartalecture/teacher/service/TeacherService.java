@@ -1,9 +1,10 @@
-package com.sparta.spartalecture.Teacher.service;
+package com.sparta.spartalecture.teacher.service;
 
-import com.sparta.spartalecture.Teacher.dto.TeacherRequestDto;
-import com.sparta.spartalecture.Teacher.dto.TeacherResponseDto;
-import com.sparta.spartalecture.Teacher.entity.Teacher;
-import com.sparta.spartalecture.Teacher.repository.TeacherRepository;
+
+import com.sparta.spartalecture.teacher.dto.TeacherRequestDto;
+import com.sparta.spartalecture.teacher.dto.TeacherResponseDto;
+import com.sparta.spartalecture.teacher.entity.Teacher;
+import com.sparta.spartalecture.teacher.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 @Service

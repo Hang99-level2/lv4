@@ -1,4 +1,5 @@
-package com.sparta.spartalecture.Teacher.dto;
+package com.sparta.spartalecture.teacher.dto;
+
 
 import lombok.Getter;
 import lombok.Setter;

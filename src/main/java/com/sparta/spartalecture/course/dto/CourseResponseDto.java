@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateCourseResponseDto {
+public class CourseResponseDto {
     private String lecture;
     private int price;
     private String introduction;
@@ -14,7 +14,7 @@ public class CreateCourseResponseDto {
     private long teacherId;
     private String addDate;
 
-    public CreateCourseResponseDto(Course course) {
+    public CourseResponseDto(Course course) {
         this.lecture = course.getLecture();
         this.price = course.getPrice();
         this.introduction = course.getIntroduction();

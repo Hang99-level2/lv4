@@ -37,7 +37,11 @@ public class AuthFilter implements Filter {
         String url = req.getRequestURI();
 
         //TODO::인증 필요 없는 부분 추가
-        if (StringUtils.hasText(url) && (url.startsWith("/api/users")|| url.startsWith("/api/sdfsfswefwf"))) {
+        //회원가입 로그인
+        if (StringUtils.hasText(url) && (url.startsWith("/api/users"))) {
+            chain.doFilter(req, res);
+        //강의 조회
+        } else if (StringUtils.hasText(url) && (url.startsWith("/api/courses") && req.getMethod().equals("GET"))) {
             chain.doFilter(req, res);
         }
         //인증 필요한 부분
@@ -52,8 +56,9 @@ public class AuthFilter implements Filter {
 
                 //여기서 저장한 값 => 유저 정보
                 Claims info = jwtUtil.getUserInfoFromToken(token);
-                User user = userRepository.findByEmail(info.getSubject()).orElseThrow();
-                req.setAttribute("role",user.getRole());
+                User user = userRepository.findByEmail(info.getSubject()).orElseThrow(()-> new IllegalArgumentException("이메일이 없어요"));
+                req.setAttribute("userId", user.getId());
+                req.setAttribute("role", user.getRole());
                 chain.doFilter(req, res);
             } else {
                 throw new IllegalAccessError("권한 없음");

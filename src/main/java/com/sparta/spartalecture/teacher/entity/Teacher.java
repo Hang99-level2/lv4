@@ -1,7 +1,7 @@
-package com.sparta.spartalecture.Teacher.entity;
+package com.sparta.spartalecture.teacher.entity;
 
-import com.sparta.spartalecture.Teacher.dto.TeacherRequestDto;
-import com.sparta.spartalecture.course.dto.CourseRequestDto;
+
+import com.sparta.spartalecture.teacher.dto.TeacherRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,8 @@
 package com.sparta.spartalecture.course.entity;
 
-import com.sparta.spartalecture.Teacher.entity.Teacher;
+import com.sparta.spartalecture.teacher.entity.Teacher;
 import com.sparta.spartalecture.course.dto.CourseRequestDto;
+import com.sparta.spartalecture.user.entity.Comment;
 import com.sparta.spartalecture.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -37,9 +38,16 @@ public class Course {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @OneToMany
-    @JoinColumn(name="user_id")
+    @ManyToMany
+    @JoinTable(
+            name = "course_like",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<User> users;
+
+    @OneToMany(mappedBy= "course")
+    private List<Comment> comments;
 
     public Course(CourseRequestDto courseRequestDto,Teacher teacher) {
         this.lecture = courseRequestDto.getLecture();
@@ -49,5 +57,6 @@ public class Course {
         this.addDate = courseRequestDto.getAddDate();
         this.teacher = teacher;
         this.users = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 }

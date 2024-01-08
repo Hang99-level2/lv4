@@ -2,17 +2,11 @@ package com.sparta.spartalecture.user.service;
 
 import com.sparta.spartalecture.jwt.JwtUtil;
 import com.sparta.spartalecture.user.dto.LoginRequestDto;
-import com.sparta.spartalecture.user.dto.LoginResponseDto;
 import com.sparta.spartalecture.user.dto.SignupRequestDto;
 import com.sparta.spartalecture.user.dto.SignupResponseDto;
 import com.sparta.spartalecture.user.entity.User;
-import com.sparta.spartalecture.user.entity.UserRoleEnum;
 import com.sparta.spartalecture.user.repository.UserRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +27,7 @@ public class UserService {
     public SignupResponseDto signup(SignupRequestDto signupRequestDto) {
         String email = signupRequestDto.getEmail();
         signupRequestDto.setPassword(passwordEncoder.encode(signupRequestDto.getPassword()));
-        //중복 이메일 체크
+
         Optional<User> checkEmail = userRepository.findByEmail(email);
         if (checkEmail.isPresent()) {
             throw new IllegalArgumentException("이메일 중복");
@@ -43,7 +37,6 @@ public class UserService {
         userRepository.save(user);
         return new SignupResponseDto(user);
     }
-
 
     public String login(LoginRequestDto loginRequestDto, HttpServletResponse res) {
         String email = loginRequestDto.getEmail();
@@ -61,5 +54,10 @@ public class UserService {
         jwtUtil.addJwtToCookie(token,res);
         return token;
     }
+
+    public User getUserById(long id){
+        return userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당하는 유저가 없습니다."));
+    }
+
 }
 

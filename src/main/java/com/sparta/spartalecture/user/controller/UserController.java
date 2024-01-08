@@ -6,7 +6,6 @@ import com.sparta.spartalecture.user.dto.LoginResponseDto;
 import com.sparta.spartalecture.user.dto.SignupRequestDto;
 import com.sparta.spartalecture.user.dto.SignupResponseDto;
 import com.sparta.spartalecture.user.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,4 +38,8 @@ public class UserController {
             return new LoginResponseDto(token);
         }
     }
+
+
+
+
 }

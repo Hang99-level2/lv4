@@ -1,6 +1,7 @@
-package com.sparta.spartalecture.Teacher.repository;
+package com.sparta.spartalecture.teacher.repository;
 
-import com.sparta.spartalecture.Teacher.entity.Teacher;
+
+import com.sparta.spartalecture.teacher.entity.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TeacherRepository extends JpaRepository<Teacher,Long> {

@@ -1,8 +1,9 @@
-package com.sparta.spartalecture.Teacher.controller;
+package com.sparta.spartalecture.teacher.controller;
 
-import com.sparta.spartalecture.Teacher.dto.TeacherRequestDto;
-import com.sparta.spartalecture.Teacher.dto.TeacherResponseDto;
-import com.sparta.spartalecture.Teacher.service.TeacherService;
+
+import com.sparta.spartalecture.teacher.dto.TeacherRequestDto;
+import com.sparta.spartalecture.teacher.dto.TeacherResponseDto;
+import com.sparta.spartalecture.teacher.service.TeacherService;
 import com.sparta.spartalecture.user.entity.UserRoleEnum;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;

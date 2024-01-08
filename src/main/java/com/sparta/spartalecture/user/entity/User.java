@@ -31,6 +31,7 @@ public class User {
     @Column(nullable = false)
     private UserRoleEnum role;
 
+
     public User(SignupRequestDto signupRequestDto) {
         this.email = signupRequestDto.getEmail();
         this.password = signupRequestDto.getPassword();
