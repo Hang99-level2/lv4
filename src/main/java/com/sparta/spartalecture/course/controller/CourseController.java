@@ -4,7 +4,6 @@ import com.sparta.spartalecture.course.dto.CourseDetailResponseDto;
 import com.sparta.spartalecture.course.dto.CourseRequestDto;
 import com.sparta.spartalecture.course.dto.CourseResponseDto;
 import com.sparta.spartalecture.course.dto.LikeResponseDto;
-import com.sparta.spartalecture.course.entity.Course;
 import com.sparta.spartalecture.course.service.CourseService;
 import com.sparta.spartalecture.user.entity.UserRoleEnum;
 import jakarta.servlet.http.HttpServletRequest;
@@ -53,13 +52,7 @@ public class CourseController {
     public LikeResponseDto updateLike(@PathVariable long courseId,
                                       HttpServletRequest req){
 
-        Object userIdAttribute = req.getAttribute("userId");
-        System.out.println("userIdAttribute = " + userIdAttribute);
-        if (userIdAttribute == null) {
-            throw new IllegalArgumentException("유저 아이디가 존재하지 않습니다.");
-        }
-        long userId = (long) userIdAttribute;
-
+        long userId = (long) req.getAttribute("userId");
         return courseService.updateLike(userId,courseId);
     }
 
