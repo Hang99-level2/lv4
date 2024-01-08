@@ -19,12 +19,7 @@ public class CommentController {
     public CommentResponseDto createComment(@PathVariable long courseId,
                                             @RequestBody CommentRequestDto commentRequestDto,
                                             HttpServletRequest req){
-        Object userIdAttribute = req.getAttribute("userId");
-        System.out.println("userIdAttribute = " + userIdAttribute);
-        if (userIdAttribute == null) {
-            throw new IllegalArgumentException("유저 아이디가 존재하지 않습니다.");
-        }
-        long userId = (long) userIdAttribute;
+        long userId = (long) req.getAttribute("userId");
         return commentService.createComment(userId,courseId,commentRequestDto);
     }
 
@@ -32,12 +27,8 @@ public class CommentController {
     public CommentResponseDto updateComment(@PathVariable long commentId,
                                             @RequestBody CommentRequestDto commentRequestDto,
                                             HttpServletRequest req){
-        Object userIdAttribute = req.getAttribute("userId");
-        System.out.println("userIdAttribute = " + userIdAttribute);
-        if (userIdAttribute == null) {
-            throw new IllegalArgumentException("유저 아이디가 존재하지 않습니다.");
-        }
-        long userId = (long) userIdAttribute;
+
+        long userId = (long) req.getAttribute("userId");
         return commentService.updateComment(userId,commentId,commentRequestDto);
     }
 

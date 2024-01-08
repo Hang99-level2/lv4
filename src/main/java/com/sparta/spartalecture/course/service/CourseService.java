@@ -29,16 +29,15 @@ public class CourseService {
         this.teacherService = teacherService;
         this.userService = userService;
     }
+    public Course getCourseById(long id) {
+        return courseRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("아이디에 해당하는 강의가 없습니다."));
+    }
 
     public CourseResponseDto createCourse(CourseRequestDto courseRequestDto) {
         Teacher teacher = teacherService.getTeacherById(courseRequestDto.getTeacherId());
         Course course = new Course(courseRequestDto, teacher);
         courseRepository.save(course);
         return new CourseResponseDto(course);
-    }
-
-    public Course getCourseById(long id) {
-        return courseRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("아이디에 해당하는 강의가 없습니다."));
     }
 
     public List<CourseResponseDto> getCoursesByCategory(String category, String sortBy, boolean isAsc) {
@@ -48,6 +47,7 @@ public class CourseService {
         }
         return courseRepository.findAllByCategory(category, sort).stream().map(CourseResponseDto::new).toList();
     }
+
     @Transactional
     public LikeResponseDto updateLike(long userId, long courseId) {
         Course course = courseRepository.findById(courseId).orElseThrow();
