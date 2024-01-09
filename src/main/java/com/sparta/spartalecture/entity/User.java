@@ -1,6 +1,5 @@
 package com.sparta.spartalecture.entity;
 
-import com.sparta.spartalecture.dto.UserSignupRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,5 +37,9 @@ public class User {
         }else{
             this.role =  UserRoleEnum.USER;
         }
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 }

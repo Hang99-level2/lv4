@@ -17,7 +17,11 @@ public class CommentController {
         return commentService.createComment(commentRequestDto);
     }
     @PutMapping("/comment/{commentId}")
-    public CommentResponseDto updateComment(@PathVariable Long commentId ,@RequestBody CommentRequestDto commentRequestDto){
-        return commentService.updateComment(commentId,commentRequestDto);
+    public CommentResponseDto updateComment(@RequestBody CommentRequestDto commentRequestDto){
+        return commentService.updateComment(commentRequestDto);
+    }
+    @DeleteMapping("/comment")
+    public String deleteComment(@RequestBody CommentRequestDto commentRequestDto){
+        return commentService.deleteComment(commentRequestDto);
     }
 }

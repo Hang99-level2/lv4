@@ -2,6 +2,8 @@ package com.sparta.spartalecture.controller;
 
 import com.sparta.spartalecture.dto.CourseRequestDto;
 import com.sparta.spartalecture.dto.CourseResponseDto;
+import com.sparta.spartalecture.dto.LikeRequestDto;
+import com.sparta.spartalecture.dto.LikeResponseDto;
 import com.sparta.spartalecture.entity.Course;
 import com.sparta.spartalecture.repository.CourseRepository;
 import com.sparta.spartalecture.service.CourseService;
@@ -25,5 +27,9 @@ public class CourseController {
     @GetMapping("/courses/{category}")
     public CourseResponseDto getCategory(@PathVariable String category){
         return new CourseResponseDto(courseService.getCategory(category));
+    }
+    @PutMapping("/like")
+    public LikeResponseDto updateLike(@RequestBody LikeRequestDto likeRequestDto){
+        return courseService.updateLike(likeRequestDto);
     }
 }

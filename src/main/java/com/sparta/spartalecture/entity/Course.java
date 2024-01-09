@@ -35,10 +35,6 @@ public class Course {
     @Column(nullable = false)
     private String addDate;
 
-//    @OneToOne
-//    @JoinColumn(name ="userId")
-//    private User user;
-
     public Course(CourseRequestDto courseRequestDto, Teacher teacher) {
         this.lecture = courseRequestDto.getLecture();
         this.price = courseRequestDto.getPrice();

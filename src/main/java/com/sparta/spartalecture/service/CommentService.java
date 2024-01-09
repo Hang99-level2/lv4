@@ -22,9 +22,16 @@ public class CommentService {
         return new CommentResponseDto(saveComment);
     }
 
-    public CommentResponseDto updateComment(Long commentId ,CommentRequestDto commentRequestDto) {
-        Comment comment = commentRepository.findById(commentId).orElseThrow();
+    @Transactional
+    public CommentResponseDto updateComment(CommentRequestDto commentRequestDto) {
+        Comment comment = commentRepository.findById(commentRequestDto.getCourseId()).orElseThrow();
         comment.update(commentRequestDto.getContext());
         return new CommentResponseDto(comment);
+    }
+    @Transactional
+    public String deleteComment(CommentRequestDto commentRequestDto) {
+        Comment comment = commentRepository.findById(commentRequestDto.getCourseId()).orElseThrow();
+        commentRepository.delete(comment);
+        return commentRequestDto.getContext();
     }
 }
