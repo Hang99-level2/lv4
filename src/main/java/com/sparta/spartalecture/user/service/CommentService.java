@@ -9,6 +9,7 @@ import com.sparta.spartalecture.user.entity.User;
 import com.sparta.spartalecture.user.repository.CommentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,7 +38,7 @@ public class CommentService {
     public CommentResponseDto updateComment(long userId, long commentId, CommentRequestDto commentRequestDto) {
         Comment comment = getCommentById(commentId);
         if (userId != comment.getUser().getId()){
-            throw new IllegalArgumentException("다른 작성자의 댓글 입니다.");
+            throw new AccessDeniedException("다른 작성자의 댓글 입니다.");
         }
 
         comment.update(commentRequestDto.getContext());
@@ -48,7 +49,7 @@ public class CommentService {
     public long deleteComment(long userId, long commentId) {
         Comment comment = getCommentById(commentId);
         if (userId != comment.getUser().getId()){
-            throw new IllegalArgumentException("다른 작성자의 댓글 입니다.");
+            throw new AccessDeniedException("다른 작성자의 댓글 입니다.");
         }
         commentRepository.delete(comment);
         return commentId;
