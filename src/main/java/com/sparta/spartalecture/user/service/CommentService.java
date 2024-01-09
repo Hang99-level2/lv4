@@ -8,22 +8,21 @@ import com.sparta.spartalecture.user.entity.Comment;
 import com.sparta.spartalecture.user.entity.User;
 import com.sparta.spartalecture.user.repository.CommentRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CommentService {
     private final CommentRepository commentRepository;
     private final UserService userService;
     private final CourseService courseService;
 
-    public CommentService(CommentRepository commentRepository, UserService userService, CourseService courseService) {
-        this.commentRepository = commentRepository;
-        this.userService = userService;
-        this.courseService = courseService;
-    }
     public Comment getCommentById(long id){
-        return commentRepository.findById(id).orElseThrow();
+        return commentRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디에 해당하는 코멘트가 없습니다."));
     }
+
     @Transactional
     public CommentResponseDto createComment(long userId, long courseId, CommentRequestDto commentRequestDto) {
         User user = userService.getUserById(userId);
@@ -38,7 +37,7 @@ public class CommentService {
     public CommentResponseDto updateComment(long userId, long commentId, CommentRequestDto commentRequestDto) {
         Comment comment = getCommentById(commentId);
         if (userId != comment.getUser().getId()){
-            throw new IllegalArgumentException("작성자가 다릅니다.");
+            throw new IllegalArgumentException("다른 작성자의 댓글 입니다.");
         }
 
         comment.update(commentRequestDto.getContext());
@@ -49,7 +48,7 @@ public class CommentService {
     public long deleteComment(long userId, long commentId) {
         Comment comment = getCommentById(commentId);
         if (userId != comment.getUser().getId()){
-            throw new IllegalArgumentException("작성자가 다릅니다.");
+            throw new IllegalArgumentException("다른 작성자의 댓글 입니다.");
         }
         commentRepository.delete(comment);
         return commentId;

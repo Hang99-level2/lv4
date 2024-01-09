@@ -4,16 +4,14 @@ import com.sparta.spartalecture.user.dto.CommentRequestDto;
 import com.sparta.spartalecture.user.dto.CommentResponseDto;
 import com.sparta.spartalecture.user.service.CommentService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class CommentController {
     private final CommentService commentService;
-
-    public CommentController(CommentService commentService) {
-        this.commentService = commentService;
-    }
 
     @PostMapping("/comments/{courseId}")
     public CommentResponseDto createComment(@PathVariable long courseId,
