@@ -47,4 +47,5 @@ public class Course {
         this.teacher= teacher;
         this.addDate = courseRequestDto.getAddDate();
     }
+
 }

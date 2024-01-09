@@ -16,8 +16,6 @@ public class CourseService {
     private final TeacherRepository teacherRepository;
 
     public CourseResponseDto courseCreate(CourseRequestDto courseRequestDto) {
-        //Todo
-        // 1.teacher의 아이디 값을 가져온다.
         Teacher teacher = teacherRepository.getReferenceById(courseRequestDto.getTeacherId());
         Course course = new Course(courseRequestDto, teacher);
         courseRepository.save(course);
