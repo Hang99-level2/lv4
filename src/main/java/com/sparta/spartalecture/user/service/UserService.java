@@ -35,7 +35,7 @@ public class UserService {
         return new SignupResponseDto(user);
     }
 
-    public String login(LoginRequestDto loginRequestDto, HttpServletResponse res) {
+    public String login(LoginRequestDto loginRequestDto) {
         String email = loginRequestDto.getEmail();
         String password = loginRequestDto.getPassword();
 

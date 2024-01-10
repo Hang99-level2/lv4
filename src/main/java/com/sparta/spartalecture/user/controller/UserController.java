@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("/users/login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDto,
                                                   HttpServletResponse res){
-        String token = userService.login(loginRequestDto,res);
+        String token = userService.login(loginRequestDto);
         jwtUtil.addJwtToCookie(token,res);
         return ResponseEntity.ok(new LoginResponseDto(token));
     }

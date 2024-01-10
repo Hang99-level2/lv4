@@ -119,6 +119,4 @@ public class JwtUtil {
     public Claims getUserInfoFromToken(String token){
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
     }
-
-
 }
