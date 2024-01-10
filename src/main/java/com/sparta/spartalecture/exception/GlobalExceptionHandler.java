@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(AccessDeniedException.class)
+    @ExceptionHandler({AccessDeniedException.class})
     public ResponseEntity<RestApiException> handleAccessDeniedException(AccessDeniedException ex) {
         RestApiException restApiException = new RestApiException(ex.getMessage(), HttpStatus.FORBIDDEN.value());
         return new ResponseEntity<>(
@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.FORBIDDEN
         );
     }
-    @ExceptionHandler(ResponseStatusException.class)
+    @ExceptionHandler({ResponseStatusException.class})
     public ResponseEntity<RestApiException> handleResponseStatusException(ResponseStatusException ex) {
         RestApiException restApiException = new RestApiException(ex.getReason(), ex.getStatusCode().value());
         return new ResponseEntity<>(
