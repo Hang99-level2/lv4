@@ -12,16 +12,22 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name="email",nullable = false)
     private String email;
+
     @Column(name ="password",nullable = false)
     private String password;
+
     @Column(name="gender",nullable = false)
     private String gender;
+
     @Column(name="number",nullable = false)
     private String number;
+
     @Column(name="address",nullable = false)
     private String address;
+
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
